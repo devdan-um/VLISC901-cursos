@@ -1,46 +1,48 @@
 package com.univer.cursos.controller;
-
 import com.univer.cursos.entity.CursoEntity;
 import com.univer.cursos.entity.MateriasEntity;
 import com.univer.cursos.repository.CursoRepository;
 import com.univer.cursos.repository.MateriasRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class CursoController {
-
     @Autowired
     private CursoRepository repository;
-
     @Autowired
     private MateriasRepository materiasRepository;
-
     @GetMapping("/api/univer/materia/{id}")
-    public CursoEntity cursoPorId(@PathVariable Integer id){
-
-        if(repository.findById(id).isPresent()){
-            return repository.findById(id).get();
+    public ResponseEntity<CursoEntity> cursoPorId(@PathVariable Integer id) {
+        Optional<CursoEntity> cursoOptional = repository.findById(id);
+        if (cursoOptional.isPresent()) {
+            CursoEntity curso = cursoOptional.get();
+            return ResponseEntity.ok(curso);
         } else {
-            return new CursoEntity();
+            return ResponseEntity.notFound().build();
         }
-
     }
-
     @GetMapping("/api/univer/materias/{idCurso}")
     public List<MateriasEntity> cursoPorIdCurso(@PathVariable Integer idCurso){
-
         if(materiasRepository.materiasByCurso(idCurso).isPresent()){
             return materiasRepository.materiasByCurso(idCurso).get();
         } else {
             return Arrays.asList(new MateriasEntity());
         }
 
+    }
+    @PostMapping("/api/univer/materias/save")
+    public ResponseEntity<CursoEntity> guardarCurso(@RequestBody CursoRequest request) {
+            CursoEntity save = new CursoEntity();
+            save.setNombre(request.getNombre());
+            save.setDescripcion(request.getDescripcion());
+            CursoEntity men = repository.save(save);
+            return new ResponseEntity<>(men, HttpStatus.CREATED);
     }
 
 }
