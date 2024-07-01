@@ -2,12 +2,13 @@ package com.univer.cursos.controller;
 
 import com.univer.cursos.entity.CursoEntity;
 import com.univer.cursos.entity.MateriasEntity;
+import com.univer.cursos.model.request.CursoRequest;
+import com.univer.cursos.model.request.MateriasRequest;
 import com.univer.cursos.repository.CursoRepository;
 import com.univer.cursos.repository.MateriasRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -42,5 +43,11 @@ public class CursoController {
         }
 
     }
+
+    @PostMapping("/api/univer/materias/save")
+    public ResponseEntity guardarCurso(@RequestBody CursoRequest request){
+        return null;
+    }
+
 
 }
