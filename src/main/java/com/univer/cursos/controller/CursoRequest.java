@@ -1,6 +1,7 @@
 package com.univer.cursos.controller;
 
 public class CursoRequest {
+
     private String nombre;
     private String descripcion;
 
