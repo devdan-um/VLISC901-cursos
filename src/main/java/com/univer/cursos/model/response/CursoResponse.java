@@ -1,6 +1,6 @@
-package com.univer.cursos.model.request;
+package com.univer.cursos.model.response;
 
-public class CursoRequest {
+public class CursoResponse {
     private String nombre;
     private String descripcion;
 
