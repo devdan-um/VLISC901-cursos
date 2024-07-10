@@ -1,6 +1,6 @@
-package com.univer.cursos.controller;
+package com.univer.cursos.model.response;
 
-public class CursoRequest {
+public class CursoResponse {
 
     private String nombre;
     private String descripcion;
@@ -21,3 +21,4 @@ public class CursoRequest {
         this.descripcion = descripcion;
     }
 }
+
