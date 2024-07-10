@@ -1,6 +1,5 @@
 package com.univer.cursos.service;
 
-
 import com.univer.cursos.entity.CursoEntity;
 import com.univer.cursos.model.response.CursoResponse;
 import com.univer.cursos.repository.CursoRepository;
