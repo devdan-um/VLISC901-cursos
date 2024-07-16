@@ -19,7 +19,7 @@ fetch('http://localhost:8686/api/univer/materias/1',{
     }
 })
 .then(json=>{
-    console.log('segunda promesa')
+    console.log('segunda promesa ')
     console.log(json)
     return json;
 })
