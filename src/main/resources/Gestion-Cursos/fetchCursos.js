@@ -2,7 +2,7 @@
         nombre: "Matematicas",
         descripcion: "Matematicas discretas"
     }
-    fetch('http://localhost:8686/api/univer/materia/1', {
+    fetch('http://localhost:8686/api/univer/materias/1', {
         method: "GET",
         //body: JSON.stringify(curso),
         headers: {"Content-Type": "application/json"}
