@@ -11,7 +11,7 @@ fetch('http://localhost:8686/api/univer/materias/1',{
 
 .then(response =>{
     console.log(response)
-    if(response.ok && response.status === 200){
+    if(response.ok && response.status  === 200){
         console.log('dentro de la primera promesa')
         return response.json()
     }else{
