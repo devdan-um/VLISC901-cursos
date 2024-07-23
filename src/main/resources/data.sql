@@ -1,3 +1,5 @@
+insert into curso (DESCRIPCION, NOMBRE) values ('Descripcion del objetivo del noveno cuatrimestre ', 'Noveno');
+
 insert into
     curso (DESCRIPCION, NOMBRE, CUATRIMESTRE)
 values ('Descripcion del objetivo del primer cuatrimestre ', 'Primero', 1);
