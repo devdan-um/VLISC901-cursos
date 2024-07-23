@@ -43,6 +43,7 @@ public class CursoController {
         }
 
     }
+    @CrossOrigin("http://127.0.0.1:5500")
 
     @PostMapping("/api/univer/materias/save")
     public ResponseEntity guardarCurso(@RequestBody CursoRequest request){
