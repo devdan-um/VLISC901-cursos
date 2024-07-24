@@ -7,34 +7,101 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
     <script type="text/javascript">
-        function myFuntion(){
-          alert('Enviado');
-
-        let  nombre = document.getElementById("name").value;
-         let descripcion = document.getElementById("descripcio").value;
-
-            const curso = {
-                nombre : nombre,
-                descripci : descripcion
+        function MyFunction(){
+            alert('Enviado')
+            const materia ={
+              name: document.getElementById("name").value,
+              curso: document.getElementById("curso").value,
+              horaSemana: document.getElementById("horaSemana").value
             }
-            console.log(curso);
+
+            console.log(materia);
+
+
+    fetch('http://localhost:8686/api/univer/materia', {
+    method: "POST",
+    body: JSON.stringify(materia),
+    headers: {"Content-Type": "application/json"}
+})
+.then(response => {
+    if(response.ok && response.status===201){
+        console.log("Dentro de la primera Promesa")
+        return response.json()
+    }else{
+        throw Error(response.statusText)
+    }
+})
+
+.then(json=>{
+    console.log("segunda promesa ")
+    console.log(json);
+    return json;
+})
+
+.catch(error => {console.log(error)})
+        }
+
+        function getCuatrimestre(){
+  fetch('http://localhost:8686/api/univer/cuatrimestre/all', {
+    method: "GET",
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+})
+  .then(response =>{
+    if(response.ok){
+      return response.json()
+    }
+  })
+  .then(json =>{
+    console.log(json)
+    var options = "<option selected> selecciona el cuatrimestre ...<option>";
+      for(var i =0; i < json.length; i++){
+        console.log(json[i])
+        options += "<option value ="+json[i].cuatrimestre+">"+ json[i].nombre + "</option>";
+      }
+      console.log(options)
+      document.getElementById("curso").innerHTML = options
+      return json;
+  })
+  .catch(error => console.log(error))
         }
     </script>
-    <title>Formulario </title>
+
+
+    <title>Formulario</title>
+
 </head>
 <body>
-<form class="row g-3">
-    <div class="col-auto">
-        <label class="visually-hidden"  for="name" >Nombre:</label>
-        <input class="form-control-plaintext"  type="text" id="name" name="name" placeholder="Nombre">
+<h2>FORMULARIO DE GUARDAR CURSOS</h2>
+<form class="row">
+    <div class="col-5 pt-2">
+        <label for="name"  class="visually-hidden">Nombre:</label>
+        <input class="form-control-plaintext" type="text" id="name" name="name" placeholder="NombredeCurso">
     </div>
-    <div class="col-auto">
-        <label class="visually-hidden" for="descripcio">Descripcion:</label>
-        <input  class="form-control-plaintext" type="text" id="descripcio" name="descripcio" placeholder="Descripcion">
+
+
+
+    <div class="col-5 pt-2">
+        <label for="hora" class="visually-hidden">HoraPorSemana:</label>
+        <input class="form-control-plaintext" type="text" name="horaSemana" id="horaSemana" placeholder="HoraPorSemana">
     </div>
-    <div class="col-auto">
-        <button type="button" class="btn btn-outline-info" onclick="myFuntion()">GUARDAR</button>
+
+    <div class="col-5 pt-2">
+        <select class="form-select form-select-lg mb-3" id="curso">
+            <option selected>Selecciona el curso</option>
+            <script>
+                const cuatrimestre = getCuatrimestre();
+
+            </script>
+        </select>
+    </div>
+
+    <div class="col-5 pt-2">
+        <button type="button" class="btn btn-outline-info" onclick="MyFunction()">GUARDAR</button>
     </div>
 </form>
-</body>
+
+</body >
 </html>
