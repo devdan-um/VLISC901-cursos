@@ -20,6 +20,9 @@ public class CursoEntity {
     @Column(name = "DESCRIPCION")
     private String descripcion;
 
+    @Column(name = "CUATRIMESTRE")
+    private Integer cuatrimestre;
+
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER,  mappedBy="curso")
     @JsonManagedReference
     private Set<MateriasEntity> materias;
@@ -54,5 +57,13 @@ public class CursoEntity {
 
     public void setMaterias(Set<MateriasEntity> materias) {
         this.materias = materias;
+    }
+
+    public Integer getCuatrimestre() {
+        return cuatrimestre;
+    }
+
+    public void setCuatrimestre(Integer cuatrimestre) {
+        this.cuatrimestre = cuatrimestre;
     }
 }
