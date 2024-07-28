@@ -19,4 +19,7 @@ public class CursoResponse {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
+    public void setCuatrimestre(Integer cuatrimestre) {
+    }
 }

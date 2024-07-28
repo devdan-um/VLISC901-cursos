@@ -1,13 +1,17 @@
 package com.univer.cursos.service;
 
 import com.univer.cursos.entity.CursoEntity;
+import com.univer.cursos.entity.MateriasEntity;
 import com.univer.cursos.model.request.MateriaRequest;
 import com.univer.cursos.model.response.CursoResponse;
 import com.univer.cursos.model.response.MateriaResponse;
 import com.univer.cursos.repository.CursoRepository;
+import com.univer.cursos.repository.MateriasRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
